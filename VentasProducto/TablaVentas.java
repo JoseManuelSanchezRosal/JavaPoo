@@ -6,7 +6,7 @@ import java.util.Scanner;
  *  - Solicitar al usuario que introduzca las ventas (int) para cada producto y día.HECHO
  *  - Mostrar la tabla completa de ventas.HECHO
  *  - Calcular y mostrar el total de ventas por producto.HECHO
- *  - Determinar qué producto tuvo el mayor total de ventas
+ *  - Determinar qué producto tuvo el mayor total de ventas.HECHO
  */
 
 public class TablaVentas {
@@ -41,11 +41,12 @@ public class TablaVentas {
         System.out.println("El total de ventas del producto 2 son: "+(tabla[0][1]+tabla[1][1])+" unidades");
         System.out.println("El total de ventas del producto 3 son: "+(tabla[0][2]+tabla[1][2])+" unidades");
 
-        //Vamos a determinar y sacar por pantalla qué producto tuvo mayor ventas:
+        //Primero guardamos el total de cada producto en una variable:
         int p1 = tabla[0][0]+tabla[1][0];
         int p2 = tabla[0][1]+tabla[1][1];
         int p3 = tabla[0][2]+tabla[1][2];
 
+        //Sacamos por pantalla el que más ventas tenga:
         if (p1 >= p2 && p1 >= p3) {
             System.out.println("El producto con mayor nº de ventas es P1 con "+p1+" unidades");
         } else if (p2 >= p1 && p2 >= p3) {
@@ -53,7 +54,5 @@ public class TablaVentas {
         } else {
             System.out.println("El producto con mayor nº de ventas es P3 con "+p3+" unidades");
         }
-
-
     }
 }
