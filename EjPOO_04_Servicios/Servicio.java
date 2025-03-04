@@ -13,6 +13,10 @@ abstract class Servicio {
         this.fechaInicio = fechaInicio;
         this.cliente = cliente;
     }
+    protected Servicio(LocalDate fechaInicio, String cliente) {
+        this.fechaInicio = fechaInicio;
+        this.cliente = cliente;
+    }
 
     //Getters y Setters:
     public void setTrabajador(){
@@ -41,5 +45,5 @@ abstract class Servicio {
     //Metodo para calcular el coste total:
     abstract double costeTotal();
     //Metodo para devolver una cadena con informacion detallada del coste del servicio
-    abstract void detalleServicio();
+    abstract String detalleServicio();
 }
