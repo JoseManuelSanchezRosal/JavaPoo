@@ -19,6 +19,11 @@ public class MainTerminal {
         System.out.println(m2);
         m2.llama(m1,400);
         System.out.println(m2);
+        Movil mjj = new Movil(123456,"bisonte");
+        System.out.println(mjj);
+        mjj.llama(m1,500);
+        System.out.println(mjj);
+
     }
 
 }

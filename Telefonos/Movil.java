@@ -27,11 +27,11 @@ public class Movil extends Terminal{
     public void llama(Terminal destinatario, int segundos) {
         super.llama(destinatario, segundos);
 
-        if(this.tarifa == "rata"){
-            this.apagar += (segundos/60) * 0.06;
-        } else if (this.tarifa == "mono") {
+        if(this.tarifa.equals("rata")){
+            this.apagar += (segundos/60) * 0.06;// EN LUGAR DE COMOPARAR DIRECTAMENTE CON EL STRING, HACERLO CON EQUALS
+        } else if (this.tarifa.equals("mono")) {
             this.apagar += (segundos/60) * 0.12;
-        }else if(this.tarifa == "bisonte"){
+        }else if(this.tarifa.equals("bisonte")){
             apagar += (segundos/60) * 0.30;
         }else{
             System.out.println("Tarifa errónea");
@@ -46,7 +46,4 @@ public class Movil extends Terminal{
                 ", coste tarifa = "+apagar+" euros "+
                 '}';
     }
-
 }
-
-
