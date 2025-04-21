@@ -1,6 +1,0 @@
-¡Hola, este es un mensaje escrito desde el ejercicio 1!
-Hola, este es otro mensaje escrito desde el ejercicio 1
-Otra línea agregada al archivo sin borrar el contenido anterior.
-
-Esta es una nueva línea agregada al archivo desde el ejercicio 4.
-Otra línea agregada al archivo sin borrar el contenido anterior.

@@ -17,7 +17,7 @@ public class Ejercicio7Main {
             String linea;
 
             while ((linea = br.readLine()) != null) {
-                String[] palabras = linea.split("\\s+"); // Divide la línea en palabras
+                String[] palabras = linea.split(" "); // Divide la línea en palabras
                 for (String palabra : palabras) {
                     if (palabra.equalsIgnoreCase(palabraBuscada)) { // Ignora mayúsculas/minúsculas
                         contador++;
