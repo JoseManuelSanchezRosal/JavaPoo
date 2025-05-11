@@ -13,7 +13,6 @@ public class Ejercicio2Main {
         // Usar FileReader para leer el archivo carácter por carácter
         try (FileReader lector = new FileReader(archivo)) {
             int caracter;
-
             // Leer carácter por carácter hasta el final del archivo (EL FINAL DEL ARCHIVO LO INDICA EL -1)
             while ((caracter = lector.read()) != -1) {
                 // Imprimir el carácter leído

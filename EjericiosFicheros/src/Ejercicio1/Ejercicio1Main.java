@@ -6,8 +6,9 @@ import java.io.IOException;
 //Crea un programa en Java que cree un archivo de texto llamado datos.txt y escriba dentro de él un mensaje de bienvenida
 public class Ejercicio1Main {
     public static void main(String[] args) throws IOException {
-        // Paso 1: Representar el archivo con File
-        String nombreArchivo = "EjericiosFicheros/src/datos.txt";  // El nombre del archivo como String en la ruta que deseemos y con el nombre.txt
+        // Paso 1: Declarar ruta del archivo "datos.txt" como un String
+        String nombreArchivo = "EjericiosFicheros/src/datos.txt";
+        // Creamos archivo File que representa esa ruta:
         File archivo = new File(nombreArchivo); // Crea un objeto File que representa el archivo
 
         // Paso 2: Crear el archivo si no existe
