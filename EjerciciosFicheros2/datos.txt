@@ -1,3 +1,2 @@
 Este es un mensaje de prueba
 Este es el segundo mensaje de prueba
-Este es el nuevo texto escrito desde el ejercicio 4

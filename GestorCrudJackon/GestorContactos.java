@@ -1,6 +1,5 @@
 package GestorCrudJackon;
 
-
 import GestorCrudJackon.Modelo.Contacto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,152 +12,171 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GestorContactos {
-    public static void main(String[] args) throws IOException {
-
-
+    public static void main(String[] args) throws IOException{
         Scanner sc = new Scanner(System.in);
+        File json = new File("GestorCrudJackon/javaContactos.json");
+        List<Contacto> contactos = recuperarContactos(json);
+
         int opcion;
-        File archivoJSON = new File("GestorCrudJackon/javaContactos.json");
-        List<Contacto> contactos = recuperarContactos(archivoJSON);
-
-
         do {
-            System.out.println("GESTOR DE CONTACTOS");
-            System.out.println("1. Agregar contacto " +
-                    "\n2. Eliminar contacto" +
-                    "\n3. Buscar contacto" +
-                    "\n4. Listar todos los contactos" +
-                    "\n5. Guardar y salir.");
-            System.out.println("Elige una opción:");
+            System.out.println("-----GESTOR DE CONTACTOS-----\n" +
+                    "1. Agregar contacto\n" +
+                    "2. Eliminar contacto\n" +
+                    "3. Modificar contacto\n" +
+                    "4. Buscar contacto\n" +
+                    "5. Listar todos los contactos\n" +
+                    "6. Guardar y salir \n" +
+                    "-----------------------------");
+            System.out.println("Introduzca opción: ");
+            System.out.println("-----------------------------");
             opcion = sc.nextInt();
             sc.nextLine();
-
             switch (opcion){
                 case 1:
                     agregarContacto(contactos);
-
                     break;
-
                 case 2:
-                    eliminarContatco(contactos);
-
+                    eliminarContacto(contactos);
                     break;
-
                 case 3:
-                    buscarContacto(contactos);
-
+                    modificarContacto(contactos);
                     break;
-
                 case 4:
-                    listarTodosContactos(contactos);
-
+                    buscarContacto(contactos);
                     break;
-
                 case 5:
-                    guardarJSON(contactos, archivoJSON);
-
-                    System.out.println("Saliendo del programa...");
+                    listarContactos(contactos);
                     break;
-
+                case 6:
+                    guardarJson(contactos, json);
+                    System.out.println("Saliendo del programa.......");
+                    break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opcion no valida");
             }
-        }while (opcion != 5);
-
+        }while (opcion !=6);
     }
 
-    public static void agregarContacto(List<Contacto> contactos){
+    public static void agregarContacto(List<Contacto> contactos) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Introduce nombre: ");
+        System.out.println("Introduzca nombre: ");
         String nombreContacto = sc.nextLine();
 
-        System.out.println("Inroduce teléfono: ");
-        int tlfContatco = sc.nextInt();
+        System.out.println("Introduczca telefono: ");
+        int telefonoContacto = sc.nextInt();
         sc.nextLine();
 
-        System.out.println("Introduce email: ");
+        System.out.println("Introduzca email: ");
         String emailContacto = sc.nextLine();
 
-        Contacto contacto = new Contacto(nombreContacto, tlfContatco, emailContacto);
+        Contacto contacto = new Contacto(nombreContacto, telefonoContacto, emailContacto);
         contactos.add(contacto);
     }
 
-    public static void eliminarContatco(List<Contacto> contactos){
+    public static void eliminarContacto(List<Contacto> contactos) {
         Scanner sc = new Scanner(System.in);
-
         System.out.println("Introduce el nombre del contacto a eliminar: ");
         String nombreEliminar = sc.nextLine();
-
         boolean encontrado = false;
 
-        for (Contacto c : contactos){
-            if (c.getNombre().equalsIgnoreCase(nombreEliminar)){
-                contactos.remove(c);
-                System.out.println("Contacto eliminado con éxito.");
+        for(Contacto cont : contactos){
+            if(cont.getNombre().equalsIgnoreCase(nombreEliminar)){
+                contactos.remove(cont);
+                encontrado = true;
+                System.out.println("Contacto con nombre '"+cont.getNombre()+ "' eliminado");
+                break;
+            }
+        }
+        if(!encontrado){
+            System.out.println("El contacto no esta en la lista");
+        }
+    }
+
+    public static void modificarContacto(List<Contacto> contactos) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el nombre del contacto a modificar: ");
+        String nombreModificar = sc.nextLine();
+        boolean encontrado = false;
+
+        for (Contacto cont : contactos) {
+            if (cont.getNombre().equalsIgnoreCase(nombreModificar)) {
+                System.out.println("Contacto encontrado: " + cont);
+
+                System.out.println("Nuevo nombre (dejar en blanco para mantener): ");
+                String nuevoNombre = sc.nextLine();
+                if (!nuevoNombre.trim().isEmpty()) {
+                    cont.setNombre(nuevoNombre);
+                }
+
+                System.out.println("Nuevo teléfono (0 para mantener): ");
+                int nuevoTelefono = sc.nextInt();
+                sc.nextLine();
+                if (nuevoTelefono != 0) {
+                    cont.setTelefono(nuevoTelefono);
+                }
+
+                System.out.println("Nuevo email (dejar en blanco para mantener): ");
+                String nuevoEmail = sc.nextLine();
+                if (!nuevoEmail.trim().isEmpty()) {
+                    cont.setEmail(nuevoEmail);
+                }
+
+                System.out.println("Contacto modificado correctamente.");
                 encontrado = true;
                 break;
             }
         }
 
-        if (!encontrado){
+        if (!encontrado) {
             System.out.println("El contacto no está en la lista.");
         }
     }
 
     public static void buscarContacto(List<Contacto> contactos){
         Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce nombre a buscar");
+        String nombreBuscado = sc.nextLine();
+        boolean encontrado = false;
 
-        System.out.println("Introduce el nombre del contacto a buscar: ");
-        String nombreBuscar = sc.nextLine();
-
-        boolean encontradoBusqueda = false;
-
-        for (Contacto c : contactos){
-            if (c.getNombre().equalsIgnoreCase(nombreBuscar)){
-                System.out.println(c);
-                encontradoBusqueda = true;
+        for (Contacto cont : contactos) {
+            if (cont.getNombre().equalsIgnoreCase(nombreBuscado)) {
+                System.out.println(cont);
+                encontrado = true;
                 break;
             }
         }
-
-        if (!encontradoBusqueda){
-            System.out.println("El contacto no está en la lista.");
+        if (!encontrado){
+            System.out.println("El contacto no esta en la lista");
         }
     }
 
-    public static void listarTodosContactos(List<Contacto> contactos){
+    public static void listarContactos(List<Contacto> contactos) {
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("Listando todos los contactos: ");
-
-        for (Contacto c : contactos){
-            System.out.println(c);
+        System.out.println("Listando contactos............");
+        for (Contacto cont : contactos){
+            System.out.println(cont);
         }
     }
 
-    public static void guardarJSON(List<Contacto> contactos, File archivoJSON){
-        Scanner sc = new Scanner(System.in);
+    private static void guardarJson(List<Contacto> contactos, File json) {
         ObjectMapper mapper = new ObjectMapper();
-
-
         try {
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(archivoJSON, contactos);
+            mapper.writeValue(json, contactos);
         } catch (IOException e) {
-            System.out.println("Error: "+e.getMessage());
+            System.out.println("Error "+e.getMessage());
         }
     }
-    public static List<Contacto> recuperarContactos(File archivoJSON) throws IOException {
+
+    public static List<Contacto> recuperarContactos(File json)throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         List<Contacto> contactosRecuperados;
-
-        if (archivoJSON.exists()){
-            contactosRecuperados = mapper.readValue(archivoJSON, new TypeReference<List<Contacto>>() {});
-        }else {
+        if(json.exists()){
+            contactosRecuperados = mapper.readValue(json, new TypeReference<List<Contacto>>() {});
+        }else{
             contactosRecuperados = new ArrayList<>();
         }
-
         return contactosRecuperados;
     }
 }

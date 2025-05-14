@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 //Ejercicio 7: Buscar una palabra en un archivo
 // Escribe un programa que busque una palabra específica dentro del archivo `datos.txt` e indique cuántas veces aparece.
-public class ej7_Contar_Palabras_Archivo {
+public class ej7_Buscar_Palabras_Archivo {
     public static void main(String[] args) {
         String ruta = new String("EjerciciosFicheros2/datos.txt");
         File archivo = new File(ruta);
