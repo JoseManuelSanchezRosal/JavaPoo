@@ -1,10 +1,8 @@
 package GestorCrudJackon;
-
 import GestorCrudJackon.Modelo.Contacto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -108,26 +106,22 @@ public class GestorContactos {
                 if (!nuevoNombre.trim().isEmpty()) {
                     cont.setNombre(nuevoNombre);
                 }
-
                 System.out.println("Nuevo teléfono (0 para mantener): ");
                 int nuevoTelefono = sc.nextInt();
                 sc.nextLine();
                 if (nuevoTelefono != 0) {
                     cont.setTelefono(nuevoTelefono);
                 }
-
                 System.out.println("Nuevo email (dejar en blanco para mantener): ");
                 String nuevoEmail = sc.nextLine();
                 if (!nuevoEmail.trim().isEmpty()) {
                     cont.setEmail(nuevoEmail);
                 }
-
                 System.out.println("Contacto modificado correctamente.");
                 encontrado = true;
                 break;
             }
         }
-
         if (!encontrado) {
             System.out.println("El contacto no está en la lista.");
         }
@@ -152,7 +146,6 @@ public class GestorContactos {
     }
 
     public static void listarContactos(List<Contacto> contactos) {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Listando contactos............");
         for (Contacto cont : contactos){
             System.out.println(cont);

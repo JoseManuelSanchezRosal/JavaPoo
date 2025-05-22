@@ -1,7 +1,5 @@
 package EjerciciosFicheros2.Serializable;
-
 import java.io.*;
-
 public class PersonaSerializable {
     public static void main(String[] args) {
         Persona per1 = new Persona("Jose",39,"jose@gmail.com");
